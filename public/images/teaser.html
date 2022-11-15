@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bear is here</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!--link rel="stylesheet" href="http://voice.tadalabs.com/aniblocks/talkanimate.min.css"-->
+    <link rel="stylesheet" href="aniblocks.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu&family=KoHo:wght@200&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../js/annyang.min.42821.js"></script>
+    <script src="../js/speechkitt.min.42821.js"></script>
+    <script src="https://kit.fontawesome.com/5ec742c83d.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"></script>
+    <script src="js/voice.js"></script>
+    <style>
+        #aniMsg{
+            top: 330px !important;
+            left: 490px !important;
+            font-size:1.3em !important;
+        }
+
+        #anna {animation-fill-mode: forwards !important;
+            top: 280px !important;   //404px;
+            margin: 0;
+            left: 104px !important; //175px;}
+        .dropin {display:block; top:-300px;position:absolute; left:302px;
+            animation: movedown 1.2s; animation-fill-mode: forwards;}
+        @keyframes movedown {
+            from {top: -300px;}
+            to {top: 90px;}
+        }
+        .goUp {
+            animation: moveup 1.5s;animation-fill-mode: forwards;}
+        @keyframes moveup {
+            from {top: 90px;}
+            to {top: -490px;}
+        }
+
+        .draped {display:block;
+            animation: hooked .2s; animation-delay:.6s;animation-fill-mode: both;}
+        @keyframes hooked {
+            from {clip-path: polygon(2% 28%, 16% 9%, 34% 0, 67% 1%, 89% 8%, 99% 39%, 100% 85%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0% 85%);}
+            to {
+
+            //clip-path: polygon(3% 39%, 19% 23%, 32% 27%, 54% 16%, 79% 21%, 90% 45%, 80% 79%, 81% 94%, 74% 99%, 15% 100%, 12% 96%, 8% 89%);
+                clip-path: polygon(3% 39%, 19% 23%, 32% 27%, 54% 16%, 79% 21%, 90% 45%, 89% 81%, 89% 93%, 78% 99%, 15% 100%, 0 100%, 0% 85%);   }
+        }
+
+        .animal.bear {
+
+            background: transparent url(images/ani-blockharness.png) no-repeat !important;
+        }
+    </style>
+    <script>
+
+        let callback = function(){
+            //setup all mods available
+            bear.emotion="stuck";
+            bear.state ="fixed";
+            //   slideShow();
+
+            mod.whatcha =  function() {
+                aniSays("Just hangin");
+                setTimeout(function()
+                { slideShow() },1100);
+
+            }
+        };
+        function drop(){
+            setupMod('teaser', callback());
+            handsUp();
+            $('#dropin').addClass('dropin');
+            $('#chute').addClass('draped');
+            animateCSS('.bear','bounce').then(
+                function() { eyes('up')  });
+            setTimeout(function () {
+                $('#anna').css('animation-iteration-count','2');
+                animateCSS('#anna','swing').then( function() {   animateCSS('.bear','bounce');
+                    animateCSS('#anna','swing');  hands("-168deg","-192deg") }
+                )
+            }, 990);
+            setTimeout(function () {
+
+                $('#anna').css('animation-iteration-count','1');
+                $(".eyeright").removeClass('lookup');
+                $(".eyeleft").removeClass('lookup');
+                animateCSS('#chute','swing').then( function() {   animateCSS('.bear','bounce');
+                    animateCSS('#anna','swing');   })
+            }, 4290);
+            slideShow()
+
+
+        }
+        function backUp(){
+            setTimeout(function () {
+                $('#face').css("transform","rotateX(50deg)");
+                $('.cheek').addClass('blowing');
+                $('.mouth').addClass('whistle')
+            }, 230);
+            setTimeout(function () {
+                $('.dropin').addClass('goUp');
+                $('#chute').removeClass('draped')
+            }, 1990);
+
+        }
+    </script>
+</head>
+
+<body onload="addCommands();drop();">
+<div id="thoughtBuble"></div><div id="aniMsg"></div>
+<div id="videobackground">
+    <!--video autoplay muted controls loop id="video-background" style="display:none">
+        <source src="images/clouds.mp4" type="video/mp4"></video-->
+</div>
+<div id="content">
+    <h2><img id=logo src="images/logo-small.png"><span id='ver'>.526p</span>
+        <div id=mods><div class="mod">Help Bear</div>
+        </div>
+    </h2>
+    <div id="iconSound"><a onclick="demoSoundToggle()">
+        <img src="images/audioOutOn.png"  style="z-index:500;width:120px"></a>
+    </div>
+    <div id="utterance"> </div>
+</div>
+<div></div>
+
+</div>
+<img src="images/tree2.png" style="z-index:1000">
+<div id="dropin" style="top:-300px; position:absolute;left:302px;">
+    <img id="chute"   src="images/chute.png">
+    <div id="anna">
+        <div id="onhead"></div>
+        <div class="animal bear">
+            <div id="face">
+                <div class="lash1"></div>
+                <div class="lash2"></div>
+                <div class="lash3"></div>
+                <div class="lash4"></div>
+                <div class="ear earleft"></div>
+                <div class="ear earright"></div>
+                <div id="faceplate" style="position:absolute;left:58px;">
+                    <div class="lid lidleft"></div>
+                    <div class="eyeleft straight" ></div>
+                    <div class="lid lidright"></div>
+                    <div class="eyeright straight"></div>
+                    <div class="nose"></div>
+                    <div class="mouth"></div>
+                    <div class="cheek"></div>
+                    <div id="rightcheek" class="cheek"></div>
+                </div>
+            </div>
+            <div class="lefthand hand"></div>
+            <div class="righthand hand"></div>
+            <div class="leftfoot noShoe"  ></div>
+            <div class="rightfoot noShoe"  ></div>
+        </div>
+    </div>
+</div>
+
+<img id="bluehat" class="hat" style="left:230px;width:230px;height:140px" src="mods/bearclothes/images/bluehat.png">
+<img id="purplehat" class="hat" style="top:389px;left:38px;width:230px;height:220px" src="mods/bearclothes/images/purplehat.png">
+<img id="yellowhat" class="hat" style="left:460px;width:210px;height:186px" src="mods/bearclothes/images/yellowhat.png">
+</div>
+
+<!--bear clothes  -->
+<audio id="giggle"><source src="mods/hellobear/sounds/bear-giggle.wav" type="audio/wav"></audio>
+<audio id="slurp"><source src="mods/hellobear/sounds/slurp.wav" type="audio/wav"></audio>
+<audio id="danceC"><source src="mods/hellobear/sounds/danceC.wav" type="audio/wav"></audio>
+<script src="js/ta_core.js"></script>
+<audio id="dance1"><source src="mods/bearclothes/sounds/dance9s.wav" type="audio/wav"></audio>
+
+<!---***** edit as needed below this line ****-->
+<div id="myStory" class="simple"  callback="teaser">
+    <audio  id="demoIntro"><source src="mods/hellobear/sounds/demoIntro.wav" type="audio/wav"></audio>
+    <div class="slide slide1" >
+        There once was a charming bear, who taught kids that using their words can solve all kinds of problems.
+        <div class="section fadein-3">Click on the mic and ask bear what she's doing?  </div>
+        <div class="section fadein-5">Example:  "What ya doing bear? " </div>
+    </div>
+    <div class="slide slide2"> Bear has many moods and games. And can be embedded into larger app or website.
+        <div class="section fadein-2">Ask Bear if she's stuck</div>
+    </div>
+
+    <div class="slide slide3" >
+        <div class="section fadein-1">Tell bear 'bye'</div>
+    </div>
+
+    <div class="slide slide4" >
+        <div class="section fadein-1">Tell bear 'bye' ...</div>
+    </div>
+    <div class="sign slide5">
+        <div style="margin-bottom:15px;" > <span style="text-align: center;font-size:32px;font-weight:bold;padding-bototm:14px">To get the Bear back<span></div>
+        This was a short demo of talkAnimate, featuring bear. For a longer demo, clink the link.
+        <div style="text-align: center;padding-top:30px">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSczY7ZE2lgHc89jgA0H-68M2gFZrOy2gJ926ygq7WnLMR5UWA/viewform">Tell us what you think</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

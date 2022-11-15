@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include ('../partials/headinfo.ejs') %>
+</head>
+<body class="white-content ">
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="wrapper">
+<%- include ('../partials/sidebar2.ejs') %>
+<div class="main-panel">
+<%- include ('../partials/nav4.ejs') %>
+<%- include ('../partials/search.ejs') %>
+<div class="content">
+<div class="row">
+<div class="col-md-12">
+<div class="card">
+<div class="card-header">
+<h5 class="title">100 Awesome Nucleo Icons</h5>
+<p class="category">Handcrafted by our friends from
+<a href="https://nucleoapp.com/?ref=1712">NucleoApp</a>
+</p>
+</div>
+<div class="card-body all-icons">
+<div class="row">
+<% images.forEach(function(images) { %>
+<div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+<div class="font-icon-detail">
+<img src="/images/<%= images.url %>" alt="<%= images.name %>">
+<p><%= images.name %></p>
+</div>
+</div>
+<% }); %>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<%- include ('../partials/footer3.ejs') %>
+</div>
+</div>
+<form id="logout-form" action="logout" method="POST" style="display: none;">
+<input type="hidden" name="_token" value="OPdKH0U2qJ0CrFNu4jGdtG9ig4x8qt3pUqmMloNP"> </form>
+
+<%- include ('../partials/script1.ejs') %>
+</body>
+</html>

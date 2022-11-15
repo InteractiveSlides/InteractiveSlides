@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title></title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css'>
+
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
+  <style id="compiled-css" type="text/css">
+    div { padding:10px;}
+
+    .interact, .fbinteract {
+    top: 9px;
+    vertical-align: text-bottom;
+    display: inline-block;
+    padding: 5px 3px 4px 9px;
+    width: 230px;
+    border-radius: 30px 30px 30px 30px;
+    border: 1px solid grey;
+    background-color: rgba(139, 232, 231, .2);
+    margin-left: 7px;
+}
+.content{
+ padding: 0px;
+}
+.load1{
+  background-color: rgba(255, 255, 255, 1 ) !important;
+}
+    .pri_slides {
+    border-radius: 25px;
+    border-width: 2px;
+    border-style: solid;
+    padding: 0px;  
+    border-color: #04AA6D !important;
+    background-color: rgba(154, 205, 50, .8) !important;
+}
+.remove, .removeThis {
+    border: 1px solid gainsboro;
+    color: yellowgreen;
+    cursor: pointer;
+    float: right;
+    margin-right: 5px;
+    background-color: white;
+    padding: 0px 6px;
+    border-radius: 17px;
+}
+.removeSlide {
+    z-index: 30;
+    background-color: white !important;
+    float: right;
+    top: 8px;
+    z-index: 80;
+    font-style: normal;
+    font-size: 12px;
+    padding: 0px 6px;
+    border-radius: 17px;
+    margin-top: 3px;
+} 
+    /* EOS */
+  </style>
+
+
+</head>
+<body>
+    <input type="button" id="more_fields" onclick="add_fields();" value="Add More" />
+<form id="formid">
+       <div class="pri_slides">
+           
+            
+            <div class="content">
+          <div class="load2">
+              <span class='label'>Slides 1:</span><input type="radio" id="age1" name="age" value="30">
+                <input type="text" class="timing" id="slide1timedamount" value=" " dcvalue=" " style="background: yellow;"> seconds &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="radio" id="age2" name="age" value="60"  checked>
+    <label for="age2">convo</label><a href="#" class="remove removeSlide" onclick="removeEl('#slide1')">X</a>
+  </div>
+
+<div class="load1">
+<textarea id="w3review" name="w3review" rows="4" cols="50"></textarea><br />
+                <span>Prompt: <input type="text" style="width:48px;" name="prompt" value="" /></span><br />
+                <span>Hint: <input type="text" style="width:48px;" name="hint" value="" /></span><br />
+                <span>Add Assets:</span><br />
+                <div class="interact" style="">
+                  <div class="removeThis" onclick="$(this).closest('.interact').remove();">x</div><br/>
+                  <input type="radio" id="isdo1" name="isdo" value="image">
+                  <label for="age2">Image</label>
+                  <input type="radio" id="isdo2" name="isdo" value="sound">
+                   <label for="age2">Sound</label><br />
+                   <input type="radio" id="isdo3" name="isdo" value="video">
+                    <label for="age2">Video</label>
+                    <input type="radio" id="isdo4" name="isdo" value="other">
+                     <label for="age2">Other</label><br />
+                     <select class="dropdown" name="starter_company" id="starter_company"></select>
+                  <br><label class="small">Go:</label>  <input type="text" class="action" dcvalue="">
+                  <div class="removeThis" onclick="$(this).closest('.interact').remove();">+ </div><div class="removeThis" onclick="$(this).closest('.interact').remove();">Effects</div> 
+              </div><br />
+                <span>FG Hints:<input type="text" style="width:48px;" name="fghints" value="" /></span><br />
+
+                <span>Background:<input type="text" style="width:48px;" name="background" value="" /></span><br />
+                <span>When User says something like:</span><br />
+                <div class="interact" style="">
+                  <div class="removeThis" onclick="$(this).closest('.interact').remove();">x</div>
+                  <input type="text" class="response" dcvalue="">
+                  <br><label class="small">Go:</label><input type="text" class="action" dcvalue="">
+                  <div class="removeThis" onclick="$(this).closest('.interact').remove();">+ </div>
+              </div>
+              </div>
+          
+        </div>
+    </form>
+
+    
+   
+    <script type="text/javascript">//<![CDATA[
+
+var slide = 1;
+function add_fields() {
+    slide++;
+    var objTo = document.getElementById('formid');
+    var divtest = document.createElement("div");
+    divtest.setAttribute("class", "pri_slides");
+    divtest.setAttribute("id", "slide"+slide);
+    divtest.innerHTML = `<div id="content`+slide+`" class="content">
+          <div class="load2">
+              <span class='label'>Slides `+slide+`:</span><input type="radio" id="age1" name="age" value="30">
+                <input type="text" class="timing" id="slide1timedamount" value=" " dcvalue=" " style="background: yellow;"> seconds &nbsp; &nbsp; &nbsp; &nbsp;
+    <input type="radio" id="age2" name="age" value="60"  checked>
+    <label for="age2">convo</label><a href="#" class="remove removeSlide" onclick="removeEl('#slide1')">X</a>
+  </div>
+
+<div id="load1`+slide+`" class="load1">
+<textarea id="w3review" name="w3review" rows="4" cols="50"></textarea><br />
+                <span>Prompt: <input type="text" style="width:48px;" name="prompt" value="" /></span><br />
+                <span>Hint: <input type="text" style="width:48px;" name="hint" value="" /></span><br />
+                <span>Add Assets:</span><br />
+                <div id="interact`+slide+`" class="interact" style="">
+                  <div class="removeThis" onclick="$(this).closest('.interact').remove();">x</div><br/>
+                  <input type="radio" id="isdo1" name="isdo2" value="image`+slide+`" onclick="checkRadio(name)">
+                  <label for="age2">Image</label>
+                  <input type="radio" id="isdo2" name="isdo2" value="sound`+slide+`" onclick="checkRadio(name)">
+                   <label for="age2">Sound</label><br />
+                   <input type="radio" id="isdo3" name="isdo2" value="video`+slide+`" onclick="checkRadio(name)">
+                    <label for="age2">Video</label>
+                    <input type="radio" id="isdo4" name="isdo2" value="other`+slide+`" onclick="checkRadio(name)">
+                     <label for="age2">Other</label><br />
+                     <select class="dropdown" name="starter_company`+slide+`" id="starter_company`+slide+`"></select>
+                  <br><label class="small">Go:</label>  <input type="text" class="action" dcvalue="">
+                  <div class="removeThis" onclick="$(this).closest('.interact').remove();">+ </div><div class="removeThis" onclick="$(this).closest('.interact').remove();">Effects</div> 
+              </div><br />
+                <span>FG Hints:<input type="text" style="width:48px;" name="fghints" value="" /></span><br />
+
+                <span>Background:<input type="text" style="width:48px;" name="background" value="" /></span><br />
+                <span>When User says something like:</span><br />
+                <div class="interact" style="">
+                  <div class="removeThis" onclick="$(this).closest('.interact').remove();">x</div>
+                  <input type="text" class="response" dcvalue="">
+                  <br><label class="small">Go:</label><input type="text" class="action" dcvalue="">
+                  <div class="removeThis" onclick="$(this).closest('.interact').remove();">+ </div>
+              </div>
+              </div>
+          
+        </div>`;
+    
+    
+   
+  
+  objTo.appendChild(divtest);
+  
+ 
+};
+
+
+
+function checkRadio(name) {
+    if(name == 'isdo2'){
+    //console.log("dude", id.value);
+    var ele = document.getElementsByName('isdo2');
+    for(i = 0; i < ele.length; i++) {
+                if(ele[i].checked);
+                console.log(ele[i].value, ele[i].parentNode.parentNode.parentNode.parentNode.id);
+                var dude121= ele[i].value;
+            }
+console.log(dude121);
+
+    } else if (name == "multiple"){
+        console.log("Choice: ", name);
+        document.getElementById("multiple-variable-equations").checked = true;
+        document.getElementById("one-variable-equations").checked = false;
+    }
+};
+var subslide = 1;
+function add_subslides() {
+  subslide++;
+    var objTo = document.getElementById('formid');
+    var divtesta = document.createElement("div");
+    divtesta.setAttribute("id", "pri_slides");
+    divtesta.innerHTML = `<div class="label">Slides ` +  subslide +`:</div><div class="content"><span>Width: <input type="text" style="width:48px;" name="width[]" value="" /><small>(ft)</small> X</span><br /><span>Length: <input type="text" style="width:48px;" name="length[]" value="" /><small>(ft)</small></span></div>`;
+    objTo.appendChild(divtesta);
+}; 
+var assets = 1;
+function add_assets(){
+  assets++;
+
+};     
+
+
+
+var images = [
+{name:"Please Select", val:""},  
+<% images.forEach(function(images) { %>{name:"<%= images.name %>", val:"/images/<%= images.url %>"},
+<% }); %>];
+
+var sounds = [
+{name:"Please Select", val:""},
+  <% sounds.forEach(function(sounds) { %>{name:"<%= sounds.name %>", val:"/sounds/<%= sounds.url %>"},
+  <% }); %>];
+
+  var video = [
+{name:"Please Select", val:""},
+  <% video.forEach(function(video) { %>{name:"<%= video.name %>", val:"/video/<%= video.url %>"},
+  <% }); %>];
+$("input[type='radio'][name='isdo']").change(function(){
+    
+    var selected = $("input[type='radio'][name='isdo']:checked").val();
+      
+      if(selected == "image") var opts = images;
+      
+      if(selected == "video") var opts = video;
+
+      if(selected == "sound") var opts = sounds;
+      
+      $("#starter_company").empty();
+      
+      $.each(opts, function(k,v){
+          
+        $("#starter_company").append("<option value='"+v.val+"'>"+v.name+"</option>");
+          
+      });
+  });
+  
+  
+  
+
+
+  $("input[type='radio'][name='isdo2']").change(function(){
+    
+    var selected = $("input[type='radio'][name='isdo2']:checked").val();
+      
+      if(selected == "image") var opts = images;
+      
+      if(selected == "video") var opts = video;
+
+      if(selected == "sound") var opts = sounds;
+      
+      $("#starter_company2").empty();
+      
+      $.each(opts, function(k,v){
+          
+        $("#starter_company2").append("<option value='"+v.val+"'>"+v.name+"</option>");
+          
+      });
+  });
+
+
+  //]]></script>
+
+
+
+</body>
+</html>
